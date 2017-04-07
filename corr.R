@@ -12,10 +12,7 @@ corr <- function(directory, threshold = 0) {
     for (i in seq_along(id)) 
     {
         
-        filename <- 
-            paste(
-                
-                if (id[i] < 10) {paste("00",id[i],sep="")} 
+        filename <- paste(if (id[i] < 10) {paste("00",id[i],sep="")} 
                 else if (id[i] < 100) {paste("0",id[i],sep="")} 
                 else {as.character(id[i])}
                 
@@ -23,10 +20,7 @@ corr <- function(directory, threshold = 0) {
                 ,sep=""
             )
         m <- read.csv(paste(getwd(),"/",directory,"/",filename,sep=""))
-        
-        
         Y <- subset(m[,2:3],!is.na(m[,2]) & !is.na(m[,3]))
-    
         n <- c(n,cor(Y[,1],Y[,2]))
     }
     
